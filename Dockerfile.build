@@ -1,4 +1,4 @@
-FROM golang:1.20
+FROM golang:1.23
 
 EXPOSE 3000
 
@@ -9,7 +9,10 @@ RUN apt-get update \
 
 # Installing Node 12
 RUN curl -sL https://deb.nodesource.com/setup_12.x | bash
-RUN apt-get update && apt-get install nodejs
+RUN apt-get update && apt-get install -y nodejs
+
+# Ensure npm is installed
+RUN apt-get install -y npm
 
 # Installing Postgres
 RUN sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main" >> /etc/apt/sources.list.d/pgdg.list' \
